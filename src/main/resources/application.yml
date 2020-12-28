@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: schema
+  factory:
+    anntotation:
+      Autowired: true
+  main:
+    allow-bean-definition-overriding: true

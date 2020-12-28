@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:ComputerShop;INIT=CREATE SCHEMA IF NOT EXISTS "COMPUTERSHOP"
+    driver-class-name: org.h2.Driver
+    username: postgres
+    password: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: ./src/main/resources/schema.sql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
