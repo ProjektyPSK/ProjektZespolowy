@@ -35,10 +35,13 @@ public class Product {
     private LocalDate updatedAt;
     private LocalDate publishedAt;
     private String content;
+    @OneToOne
+    private Images images;
+
 
     public Product(@NotNull Long idProduct, @NotNull User user, @NotNull String title, String metaTitle, String summary,
                    @NotNull String sku, @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content) {
+                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Images images) {
         this.idProduct = idProduct;
         this.user = user;
         this.title = title;
@@ -52,6 +55,7 @@ public class Product {
         this.updatedAt = updatedAt;
         this.publishedAt = publishedAt;
         this.content = content;
+        this.images = images;
     }
 
     public Product() {
@@ -159,5 +163,13 @@ public class Product {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }

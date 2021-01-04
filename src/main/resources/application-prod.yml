@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/websystems
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     # TODO: change password
     password: postgres
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         hbm2ddl:

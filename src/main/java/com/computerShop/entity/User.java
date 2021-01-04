@@ -23,9 +23,10 @@ public class User {
     @NotNull
     private LocalDate registered;
     private LocalDate lastLogin;
+    private String token;
 
     public User(Long idUser, String firstName, String middleName, String lastName, String mobile, String email,
-                String password, boolean isAdmin, boolean isVendor, LocalDate registered, LocalDate lastLogin) {
+                String password, boolean isAdmin, boolean isVendor, LocalDate registered, LocalDate lastLogin, String token) {
 
         this.idUser = idUser;
         this.firstName = firstName;
@@ -38,6 +39,7 @@ public class User {
         this.isVendor = isVendor;
         this.registered = registered;
         this.lastLogin = lastLogin;
+        this.token = token;
     }
 
     public User() {
@@ -129,5 +131,13 @@ public class User {
 
     public void setLastLogin(LocalDate lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
