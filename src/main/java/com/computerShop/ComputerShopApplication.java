@@ -7,15 +7,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-public class WebSystemApplication extends SpringBootServletInitializer {
+public class ComputerShopApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(WebSystemApplication.class);
+        return application.sources(ComputerShopApplication.class);
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(WebSystemApplication.class, args);
+        SpringApplication.run(ComputerShopApplication.class, args);
 
     }
 }

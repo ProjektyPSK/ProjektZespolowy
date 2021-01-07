@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

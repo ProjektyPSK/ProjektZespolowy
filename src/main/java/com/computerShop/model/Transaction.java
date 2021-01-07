@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ public class Transaction {
     private Long idTransaction;
     @ManyToOne
     @NotNull
-    private User user;
+    private Users users;
     @NotNull
     @ManyToOne
     private Order order;
@@ -34,11 +34,11 @@ public class Transaction {
     private String content;
 
 
-    public Transaction(@NotNull Long idTransaction, @NotNull User user, @NotNull Order order, @NotNull String code,
+    public Transaction(@NotNull Long idTransaction, @NotNull Users users, @NotNull Order order, @NotNull String code,
                        @NotNull Type type, @NotNull Mode mode, @NotNull Status status, @NotNull LocalDate createdAt,
                        LocalDate updatedAt, String content) {
         this.idTransaction = idTransaction;
-        this.user = user;
+        this.users = users;
         this.order = order;
         this.code = code;
         this.type = type;
@@ -60,12 +60,12 @@ public class Transaction {
         this.idTransaction = idTransaction;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 
     public Order getOrder() {

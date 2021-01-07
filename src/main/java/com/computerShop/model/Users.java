@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -6,43 +6,41 @@ import java.time.LocalDate;
 
 @Entity
 @Table(schema = "ComputerShop")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUser;
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private Credentials credentials;
     private String firstName;
     private String middleName;
     private String lastName;
     private String mobile;
-    private String email;
-    @NotNull
-    private String password;
     private boolean isAdmin;
     private boolean isVendor;
     @NotNull
     private LocalDate registered;
     private LocalDate lastLogin;
-    private String token;
 
-    public User(Long idUser, String firstName, String middleName, String lastName, String mobile, String email,
-                String password, boolean isAdmin, boolean isVendor, LocalDate registered, LocalDate lastLogin, String token) {
+    public Users(Long idUser, @NotNull Credentials credentials, String firstName, String middleName, String lastName, String mobile, boolean isAdmin,
+                 boolean isVendor, LocalDate registered, LocalDate lastLogin) {
 
         this.idUser = idUser;
+        this.credentials = credentials;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.mobile = mobile;
-        this.email = email;
-        this.password = password;
         this.isAdmin = isAdmin;
         this.isVendor = isVendor;
         this.registered = registered;
         this.lastLogin = lastLogin;
-        this.token = token;
+
     }
 
-    public User() {
+    public Users() {
     }
 
     public Long getIdUser() {
@@ -85,22 +83,6 @@ public class User {
         this.mobile = mobile;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -133,11 +115,11 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public String getToken() {
-        return token;
+    public Credentials getCredentials() {
+        return credentials;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
     }
 }

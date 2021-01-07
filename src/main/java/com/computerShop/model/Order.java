@@ -1,6 +1,4 @@
-package com.computerShop.entity;
-
-import org.springframework.beans.factory.annotation.Value;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,7 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOrder;
     @ManyToOne
-    private User user;
+    private Users users;
     private String sessionId;
     private String token;
     @NotNull
@@ -61,14 +59,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long idOrder, User user, String sessionId, String token, Status status, @NotNull BigDecimal subTotal,
+    public Order(Long idOrder, Users users, String sessionId, String token, Status status, @NotNull BigDecimal subTotal,
                  @NotNull BigDecimal itemDiscount, @NotNull BigDecimal tax, @NotNull BigDecimal shipping,
                  @NotNull BigDecimal total, String promo, @NotNull BigDecimal discount, @NotNull BigDecimal grandTotal,
                  String firstName, String middleName, String lastName, String mobile, String email, String line1,
                  String line2, String city, String province, String country, @NotNull LocalDate createdAt,
                  LocalDate updatedAt, Status content) {
         this.idOrder = idOrder;
-        this.user = user;
+        this.users = users;
         this.sessionId = sessionId;
         this.token = token;
         this.status = status;
@@ -103,12 +101,12 @@ public class Order {
         this.idOrder = idOrder;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 
     public String getSessionId() {

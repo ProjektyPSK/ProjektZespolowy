@@ -1,11 +1,10 @@
 package com.computerShop.controllers;
 
-import com.computerShop.entity.User;
-import com.computerShop.repository.UserRepository;
-import com.computerShop.services.UserService;
-import org.apache.commons.lang3.StringUtils;
+import com.computerShop.model.Users;
+import com.computerShop.repository.UsersRepository;
+import com.computerShop.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,25 +13,31 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository usersRepository;
 
     @Autowired
-    private UserService userService;
+    private UsersService usersService;
 
 
-    @PostMapping("/token")
-    public String getToken(@RequestParam("email") final String email, @RequestParam("password") final String password){
-        String token= userService.login(email,password);
-        if(StringUtils.isEmpty(token)){
-            return "no token found";
-        }
-        return token;
+//    @PostMapping("/token")
+//    public String getToken(@RequestParam("email") final String email, @RequestParam("password") final String password){
+//        String token= userService.login(email,password);
+//        if(StringUtils.isEmpty(token)){
+//            return "no token found";
+//        }
+//        return token;
+//    }
+
+
+    @GetMapping(value = "/admin/users/user/{id}",produces = "application/json")
+    public Users getUserDetail(@PathVariable Long id){
+        return usersService.findById(id);
     }
 
-
-    @GetMapping(value = "/api/users/user/{id}",produces = "application/json")
-    public User getUserDetail(@PathVariable Long id){
-        return userService.findById(id);
+    @GetMapping(value = "/admin/getAllUsers",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Users> getUserDetail(){
+        return usersService.getAllUsers();
     }
+
 
 }

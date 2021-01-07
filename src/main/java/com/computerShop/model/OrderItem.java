@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -7,19 +7,18 @@ import java.time.LocalDate;
 
 @Entity
 @Table(schema = "ComputerShop")
-public class Product {
+public class OrderItem {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idProduct;
-    @NotNull
+    private Long idOrderItem;
     @ManyToOne
-    private User user;
     @NotNull
-    private String title;
-    private String metaTitle;
-    private String summary;
+    private Product product;
+    @ManyToOne
+    @NotNull
+    private Order order;
     @NotNull
     private String sku;
     @NotNull
@@ -29,76 +28,53 @@ public class Product {
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal discount;
     @NotNull
+    @Column(columnDefinition = "SMALLINT default 0")
     private int quantity;
     @NotNull
     private LocalDate createdAt;
     private LocalDate updatedAt;
-    private LocalDate publishedAt;
     private String content;
-    @OneToOne
-    private Images images;
 
-
-    public Product(@NotNull Long idProduct, @NotNull User user, @NotNull String title, String metaTitle, String summary,
-                   @NotNull String sku, @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Images images) {
-        this.idProduct = idProduct;
-        this.user = user;
-        this.title = title;
-        this.metaTitle = metaTitle;
-        this.summary = summary;
+    public OrderItem(@NotNull Long idOrderItem, @NotNull Product product, @NotNull Order order, @NotNull String sku,
+                     @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
+                     @NotNull LocalDate createdAt, LocalDate updatedAt, String content) {
+        this.idOrderItem = idOrderItem;
+        this.product = product;
+        this.order = order;
         this.sku = sku;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.publishedAt = publishedAt;
         this.content = content;
-        this.images = images;
     }
 
-    public Product() {
+    public OrderItem() {
     }
 
-    public Long getIdProduct() {
-        return idProduct;
+    public Long getIdOrderItem() {
+        return idOrderItem;
     }
 
-    public void setIdProduct(Long idProduct) {
-        this.idProduct = idProduct;
+    public void setIdOrderItem(Long idOrderItem) {
+        this.idOrderItem = idOrderItem;
     }
 
-    public User getUser() {
-        return user;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getTitle() {
-        return title;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMetaTitle() {
-        return metaTitle;
-    }
-
-    public void setMetaTitle(String metaTitle) {
-        this.metaTitle = metaTitle;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public String getSku() {
@@ -149,27 +125,11 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public LocalDate getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(LocalDate publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Images getImages() {
-        return images;
-    }
-
-    public void setImages(Images images) {
-        this.images = images;
     }
 }

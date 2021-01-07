@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -7,18 +7,19 @@ import java.time.LocalDate;
 
 @Entity
 @Table(schema = "ComputerShop")
-public class OrderItem {
+public class Product {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idOrderItem;
-    @ManyToOne
+    private Long idProduct;
     @NotNull
-    private Product product;
     @ManyToOne
+    private Users users;
     @NotNull
-    private Order order;
+    private String title;
+    private String metaTitle;
+    private String summary;
     @NotNull
     private String sku;
     @NotNull
@@ -28,53 +29,76 @@ public class OrderItem {
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal discount;
     @NotNull
-    @Column(columnDefinition = "SMALLINT default 0")
     private int quantity;
     @NotNull
     private LocalDate createdAt;
     private LocalDate updatedAt;
+    private LocalDate publishedAt;
     private String content;
+    @OneToOne
+    private Images images;
 
-    public OrderItem(@NotNull Long idOrderItem, @NotNull Product product, @NotNull Order order, @NotNull String sku,
-                     @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                     @NotNull LocalDate createdAt, LocalDate updatedAt, String content) {
-        this.idOrderItem = idOrderItem;
-        this.product = product;
-        this.order = order;
+
+    public Product(@NotNull Long idProduct, @NotNull Users users, @NotNull String title, String metaTitle, String summary,
+                   @NotNull String sku, @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
+                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Images images) {
+        this.idProduct = idProduct;
+        this.users = users;
+        this.title = title;
+        this.metaTitle = metaTitle;
+        this.summary = summary;
         this.sku = sku;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.publishedAt = publishedAt;
         this.content = content;
+        this.images = images;
     }
 
-    public OrderItem() {
+    public Product() {
     }
 
-    public Long getIdOrderItem() {
-        return idOrderItem;
+    public Long getIdProduct() {
+        return idProduct;
     }
 
-    public void setIdOrderItem(Long idOrderItem) {
-        this.idOrderItem = idOrderItem;
+    public void setIdProduct(Long idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public Product getProduct() {
-        return product;
+    public Users getUser() {
+        return users;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setUser(Users users) {
+        this.users = users;
     }
 
-    public Order getOrder() {
-        return order;
+    public String getTitle() {
+        return title;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMetaTitle() {
+        return metaTitle;
+    }
+
+    public void setMetaTitle(String metaTitle) {
+        this.metaTitle = metaTitle;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public String getSku() {
@@ -125,11 +149,27 @@ public class OrderItem {
         this.updatedAt = updatedAt;
     }
 
+    public LocalDate getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(LocalDate publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Images getImages() {
+        return images;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
     }
 }

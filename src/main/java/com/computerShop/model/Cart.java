@@ -1,4 +1,4 @@
-package com.computerShop.entity;
+package com.computerShop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_Cart;
     @ManyToOne
-    private User user;
+    private Users users;
     @NotNull
     private String sessionId;
     @NotNull
@@ -34,9 +34,9 @@ public class Cart {
     private LocalDate updatedAt;
     private String content;
 
-    public Cart(Long id_Cart, User user, String sessionId, String token, Status status, String firstName, String middleName, String lastName, String mobile, String email, String line1, String line2, String city, String province, String country, @NotNull LocalDate createdAt, LocalDate updatedAt, String content) {
+    public Cart(Long id_Cart, Users users, String sessionId, String token, Status status, String firstName, String middleName, String lastName, String mobile, String email, String line1, String line2, String city, String province, String country, @NotNull LocalDate createdAt, LocalDate updatedAt, String content) {
         this.id_Cart = id_Cart;
-        this.user = user;
+        this.users = users;
         this.sessionId = sessionId;
         this.token = token;
         this.status = status;
@@ -66,12 +66,12 @@ public class Cart {
         this.id_Cart = id_Cart;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Users users) {
+        this.users = users;
     }
 
     public String getSessionId() {

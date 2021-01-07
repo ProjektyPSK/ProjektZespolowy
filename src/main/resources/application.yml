@@ -1,10 +1,9 @@
 spring:
   profiles:
     active: prod
-#  factory:
-#    anntotation:
-#      Autowired: true
-#  main:
-#    allow-bean-definition-overriding: true
 server:
   port: 8080
+
+jwt:
+  expirationTime: 3600000
+  secret: asdsalqrk1232115dfas@!#!@sds
