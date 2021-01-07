@@ -1,7 +1,6 @@
 package com.computerShop.config;
 
-import com.computerShop.model.Credentials;
-import com.computerShop.model.Users;
+import com.computerShop.Entity.Credentials;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

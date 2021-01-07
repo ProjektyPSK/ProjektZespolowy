@@ -1,6 +1,6 @@
 package com.computerShop.repository;
 
-import com.computerShop.model.ProductCategory;
+import com.computerShop.Entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

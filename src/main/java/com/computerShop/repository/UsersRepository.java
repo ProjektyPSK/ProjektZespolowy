@@ -1,7 +1,7 @@
 package com.computerShop.repository;
 
-import com.computerShop.model.Credentials;
-import com.computerShop.model.Users;
+import com.computerShop.Entity.Credentials;
+import com.computerShop.Entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

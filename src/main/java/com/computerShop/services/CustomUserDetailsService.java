@@ -1,8 +1,8 @@
 package com.computerShop.services;
 
-import com.computerShop.model.Credentials;
+import com.computerShop.Entity.Credentials;
+import com.computerShop.Entity.Users;
 import com.computerShop.model.FrontUserDetail;
-import com.computerShop.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

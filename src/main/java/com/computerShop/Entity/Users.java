@@ -1,4 +1,6 @@
-package com.computerShop.model;
+package com.computerShop.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,9 +12,11 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long idUser;
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Credentials credentials;
     private String firstName;
     private String middleName;

@@ -1,5 +1,6 @@
 package com.computerShop.model;
 
+import com.computerShop.Entity.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,11 +30,11 @@ public class FrontUserDetail implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<>();
 
-        if(user.isAdmin()){
+        if (user.isAdmin()) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }else if(user.isVendor()){
+        } else if (user.isVendor()) {
             authorities.add(new SimpleGrantedAuthority("ROLE_VENDOR"));
-        }else{
+        } else {
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         }
 

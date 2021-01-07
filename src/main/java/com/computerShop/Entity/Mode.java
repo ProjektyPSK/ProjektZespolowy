@@ -1,4 +1,4 @@
-package com.computerShop.model;
+package com.computerShop.Entity;
 
 public enum Mode {
     PŁATNOŚĆ_ONLINE,

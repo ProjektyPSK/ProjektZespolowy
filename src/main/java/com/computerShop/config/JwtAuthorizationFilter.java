@@ -1,10 +1,5 @@
 package com.computerShop.config;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.provisioning.UserDetailsManager;
-
-import javax.servlet.Filter;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,6 +28,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         this.userDetailsService = userDetailsService;
         this.secret = secret;
     }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws IOException, ServletException {

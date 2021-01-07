@@ -1,7 +1,6 @@
 package com.computerShop.services;
 
-import com.computerShop.model.Credentials;
-import com.computerShop.model.Users;
+import com.computerShop.Entity.Credentials;
 import com.computerShop.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

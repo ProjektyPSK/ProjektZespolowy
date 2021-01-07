@@ -1,4 +1,4 @@
-package com.computerShop.model;
+package com.computerShop.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

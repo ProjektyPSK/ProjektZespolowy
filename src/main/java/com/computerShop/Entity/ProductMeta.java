@@ -1,4 +1,4 @@
-package com.computerShop.model;
+package com.computerShop.Entity;
 
 import javax.persistence.*;
 
@@ -54,5 +54,5 @@ public class ProductMeta {
     public void setContent(String content) {
         this.content = content;
     }
-    
+
 }

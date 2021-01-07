@@ -1,6 +1,6 @@
 package com.computerShop.repository;
 
-import com.computerShop.model.ProductReview;
+import com.computerShop.Entity.ProductReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

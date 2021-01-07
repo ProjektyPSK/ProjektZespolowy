@@ -1,10 +1,10 @@
-package com.computerShop.model;
+package com.computerShop.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(schema = "ComputerShop" )
+@Table(schema = "ComputerShop")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

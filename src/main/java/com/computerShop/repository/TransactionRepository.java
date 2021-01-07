@@ -1,6 +1,6 @@
 package com.computerShop.repository;
 
-import com.computerShop.model.Transaction;
+import com.computerShop.Entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
