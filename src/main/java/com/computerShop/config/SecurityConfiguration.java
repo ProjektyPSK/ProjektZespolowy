@@ -55,6 +55,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").hasAnyRole("VENDOR", "USER")
                 .anyRequest().authenticated()
                 .and()
+                .formLogin()
+                .permitAll()
+                .and()
+                .portMapper().http(8080).mapsTo(3000)
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(authenticationFilter())
@@ -62,14 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                .headers().frameOptions().disable()
-                .and()
-                .formLogin()
-                .loginPage("/login*")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .headers().frameOptions().disable();
     }
 
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
