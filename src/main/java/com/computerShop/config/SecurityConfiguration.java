@@ -62,7 +62,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                .headers().frameOptions().disable();
+                .headers().frameOptions().disable()
+                .and()
+                .formLogin()
+                .loginPage("/login*")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
