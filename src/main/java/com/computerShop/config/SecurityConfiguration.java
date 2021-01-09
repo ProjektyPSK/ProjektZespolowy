@@ -83,20 +83,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return authenticationFilter;
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration corsConfiguration = new CorsConfiguration();
-//        corsConfiguration.addAllowedOrigin("http://localhost:3000");
-//        corsConfiguration.setAllowedMethods(Arrays.asList(
-//                HttpMethod.GET.name(),
-//                HttpMethod.HEAD.name(),
-//                HttpMethod.POST.name(),
-//                HttpMethod.PUT.name(),
-//                HttpMethod.DELETE.name()));
-//        corsConfiguration.setMaxAge(1800L);
-//        source.registerCorsConfiguration("/**", corsConfiguration); // you restrict your path here
-//        return source;
-//    }
-
 }

@@ -82,4 +82,10 @@ public class UsersService {
 
         return user;
     }
+
+    public Users getCurrentUser(String users){
+        Credentials byEmail = credentialsRepository.findByEmail(users);
+        Users byCredentials = usersRepository.findByCredentials(byEmail);
+        return byCredentials;
+    }
 }
