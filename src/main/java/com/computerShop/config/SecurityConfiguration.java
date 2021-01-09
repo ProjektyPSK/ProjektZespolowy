@@ -4,13 +4,20 @@ import com.computerShop.services.CustomUserDetailsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -55,11 +62,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").hasAnyRole("VENDOR", "USER")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login")
                 .permitAll()
-                .and()
-                .portMapper().http(8080).mapsTo(3000)
-                .and()
+                .and().cors().configurationSource(corsConfigurationSource()).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(authenticationFilter())
@@ -76,6 +81,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authenticationFilter.setAuthenticationFailureHandler(failureHandler);
         authenticationFilter.setAuthenticationManager(super.authenticationManager());
         return authenticationFilter;
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.setAllowedMethods(Arrays.asList(
+                HttpMethod.GET.name(),
+                HttpMethod.HEAD.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.DELETE.name()));
+        corsConfiguration.setMaxAge(1800L);
+        source.registerCorsConfiguration("/**", corsConfiguration); // you restrict your path here
+        return source;
     }
 
 }
