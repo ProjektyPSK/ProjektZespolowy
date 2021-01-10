@@ -22,7 +22,6 @@ public class LoginController {
 
     @GetMapping("/currentUser")
     public Users currentUser(Authentication authentication, Principal principal) {
-        Object principal1 = authentication.getPrincipal();
         Users currentUser = usersService.getCurrentUser(principal.getName());
         return currentUser;
            }
