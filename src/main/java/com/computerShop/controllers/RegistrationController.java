@@ -1,15 +1,12 @@
 package com.computerShop.controllers;
 
-import com.computerShop.Entity.Users;
 import com.computerShop.model.RegistrationEmployee;
 import com.computerShop.model.RegistrationUser;
 import com.computerShop.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RegistrationController {
@@ -17,14 +14,16 @@ public class RegistrationController {
     @Autowired
     private UsersService usersService;
 
-    @PostMapping(value = "/users/registration")
-    public Users registerUser(@ModelAttribute("registrationUser") RegistrationUser registrationUser, BindingResult bindingResult, Model model) {
-        return usersService.registerUser(registrationUser);
+    @PostMapping(value = "/admin/signUp")
+    @ResponseBody
+    public String registerAdmin(@RequestBody RegistrationEmployee registrationEmployee) {
+        return usersService.registrationEmployee(registrationEmployee);
     }
 
-    @PostMapping(value = "/admin/registrationEmployee")
-    public Users registerAdmin(@ModelAttribute("registrationEmployee") RegistrationEmployee registrationEmployee, BindingResult bindingResult, Model model) {
-        return usersService.registrationEmployee(registrationEmployee);
+    @PostMapping(value = "/users/signUp", produces = "application/json")
+    @ResponseBody
+    public String registrations(@RequestBody RegistrationUser registrationUser) {
+        return usersService.signUpUser(registrationUser);
     }
 
 

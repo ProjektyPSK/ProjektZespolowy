@@ -26,4 +26,5 @@ public class LoginController {
         Users currentUser = usersService.getCurrentUser(principal.getName());
         return currentUser;
            }
+
 }
