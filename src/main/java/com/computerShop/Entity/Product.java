@@ -18,6 +18,7 @@ public class Product implements Serializable {
 
     @Id
     @NotNull
+    @JsonView(View.Summary.class)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProduct;
     @NotNull
