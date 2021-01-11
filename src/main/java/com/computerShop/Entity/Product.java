@@ -52,6 +52,7 @@ public class Product implements Serializable {
     @JsonView(View.Summary.class)
     private LocalDate publishedAt;
     @JsonView(View.Summary.class)
+    @Column(length = 1000)
     private String content;
 
     @org.hibernate.annotations.Type(type = "string-array")
