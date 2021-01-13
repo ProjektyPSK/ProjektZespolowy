@@ -58,8 +58,7 @@ public class Product implements Serializable {
     @Column(columnDefinition = "text")
     private String content;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
+    @OneToMany(mappedBy = "product")
     private Set<ProductMeta> metaProduct = new HashSet<>();
 
     @org.hibernate.annotations.Type(type = "string-array")

@@ -1,5 +1,7 @@
 package com.computerShop.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +11,7 @@ public class ProductMeta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProductMeta;
     @ManyToOne()
-    @JoinColumn
+    @JsonIgnore
     private Product product;
     private String key;
     private String content;
