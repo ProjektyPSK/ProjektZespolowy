@@ -34,7 +34,7 @@ public class CartsController {
         cartsService.removeFromTheCart(idProduct, currentUser.getIdUser());
     }
 
-    @PostMapping("/carts")
+    @GetMapping("/carts")
     public List<Product> viewCart(Authentication authentication, Principal principal) {
         Users currentUser = usersService.getCurrentUser(principal.getName());
         return cartsService.viewCart(currentUser);
