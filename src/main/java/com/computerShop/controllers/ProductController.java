@@ -5,9 +5,7 @@ import com.computerShop.Entity.View;
 import com.computerShop.services.ProductService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,11 @@ public class ProductController {
     @GetMapping("/admin/products")
     public List<Product> getAll() {
         return productService.findAllProducts();
+    }
+
+    @GetMapping("/admin/addProduct")
+    @ResponseBody
+    public void addProduct(@RequestBody Product product) {
+        productService.addProduct(product);
     }
 }

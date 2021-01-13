@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(schema = "ComputerShop")
@@ -20,6 +21,7 @@ public class Product implements Serializable {
     @NotNull
     @JsonView(View.Summary.class)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
     private Long idProduct;
     @NotNull
     @ManyToOne
@@ -56,6 +58,9 @@ public class Product implements Serializable {
     @Column(columnDefinition = "text")
     private String content;
 
+    @OneToMany(mappedBy = "product")
+    private Set<ProductMeta> metaProduct;
+
     @org.hibernate.annotations.Type(type = "string-array")
     @Column(columnDefinition = "text[]")
     @JsonView(View.Summary.class)
@@ -63,7 +68,7 @@ public class Product implements Serializable {
 
     public Product(@NotNull Long idProduct, @NotNull Users users, @NotNull String title, String metaTitle, String summary,
                    @NotNull String sku, @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, String[] images) {
+                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Set<ProductMeta> metaProduct, String[] images) {
         this.idProduct = idProduct;
         this.users = users;
         this.title = title;
@@ -77,6 +82,7 @@ public class Product implements Serializable {
         this.updatedAt = updatedAt;
         this.publishedAt = publishedAt;
         this.content = content;
+        this.metaProduct = metaProduct;
         this.images = images;
     }
 
@@ -193,5 +199,13 @@ public class Product implements Serializable {
 
     public void setImages(String[] images) {
         this.images = images;
+    }
+
+    public Set<ProductMeta> getMetaProduct() {
+        return metaProduct;
+    }
+
+    public void setMetaProduct(Set<ProductMeta> productMeta) {
+        this.metaProduct = productMeta;
     }
 }

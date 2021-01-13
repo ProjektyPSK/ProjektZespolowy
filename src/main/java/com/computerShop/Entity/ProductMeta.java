@@ -7,14 +7,15 @@ import javax.persistence.*;
 public class ProductMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productMeta;
+    private Long idProductMeta;
     @ManyToOne
+    @JoinColumn(name="product_id", nullable = false, insertable = false)
     private Product product;
     private String key;
     private String content;
 
-    public ProductMeta(Long productMeta, Product product, String key, String content) {
-        this.productMeta = productMeta;
+    public ProductMeta(Long idProductMeta, Product product, String key, String content) {
+        this.idProductMeta = idProductMeta;
         this.product = product;
         this.key = key;
         this.content = content;
@@ -23,12 +24,12 @@ public class ProductMeta {
     public ProductMeta() {
     }
 
-    public Long getProductMeta() {
-        return productMeta;
+    public Long getIdProductMeta() {
+        return idProductMeta;
     }
 
-    public void setProductMeta(Long productMeta) {
-        this.productMeta = productMeta;
+    public void setIdProductMeta(Long productMeta) {
+        this.idProductMeta = productMeta;
     }
 
     public Product getProduct() {
