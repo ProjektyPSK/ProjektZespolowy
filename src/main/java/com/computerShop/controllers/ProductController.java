@@ -1,6 +1,7 @@
 package com.computerShop.controllers;
 
 import com.computerShop.Entity.Product;
+import com.computerShop.Entity.ProductMeta;
 import com.computerShop.Entity.View;
 import com.computerShop.services.ProductService;
 import com.fasterxml.jackson.annotation.JsonView;

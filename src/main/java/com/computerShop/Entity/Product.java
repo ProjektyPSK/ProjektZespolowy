@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,6 @@ public class Product implements Serializable {
     @NotNull
     @JsonView(View.Summary.class)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "product_id")
     private Long idProduct;
     @NotNull
     @ManyToOne
@@ -58,8 +58,9 @@ public class Product implements Serializable {
     @Column(columnDefinition = "text")
     private String content;
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductMeta> metaProduct;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn
+    private Set<ProductMeta> metaProduct = new HashSet<>();
 
     @org.hibernate.annotations.Type(type = "string-array")
     @Column(columnDefinition = "text[]")

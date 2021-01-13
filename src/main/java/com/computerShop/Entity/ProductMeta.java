@@ -8,8 +8,8 @@ public class ProductMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProductMeta;
-    @ManyToOne
-    @JoinColumn(name="product_id", nullable = false, insertable = false)
+    @ManyToOne()
+    @JoinColumn
     private Product product;
     private String key;
     private String content;
