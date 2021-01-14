@@ -1,5 +1,6 @@
 package com.computerShop.Entity;
 
+import com.computerShop.Utils.View;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import org.hibernate.annotations.TypeDef;
@@ -20,55 +21,60 @@ public class Product implements Serializable {
 
     @Id
     @NotNull
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProduct;
     @NotNull
     @ManyToOne
     private Users users;
     @NotNull
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private String title;
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private String metaTitle;
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private String summary;
     @NotNull
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private String sku;
     @NotNull
     @Column(columnDefinition = "FLOAT default 0")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private BigDecimal price;
     @NotNull
     @Column(columnDefinition = "FLOAT default 0")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private BigDecimal discount;
     @NotNull
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private int quantity;
     @NotNull
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private LocalDate createdAt;
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private LocalDate updatedAt;
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private LocalDate publishedAt;
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     @Column(columnDefinition = "text")
     private String content;
 
     @OneToMany(mappedBy = "product")
+    @JsonView({View.Product.class, View.Category.class})
     private Set<ProductMeta> metaProduct = new HashSet<>();
-
+    @ManyToOne()
+    private Category category;
+    @OneToMany(mappedBy = "product")
+    @JsonView(View.Product.class)
+    private Set<Carts> carts;
     @org.hibernate.annotations.Type(type = "string-array")
     @Column(columnDefinition = "text[]")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Product.class, View.Category.class})
     private String[] images;
 
     public Product(@NotNull Long idProduct, @NotNull Users users, @NotNull String title, String metaTitle, String summary,
                    @NotNull String sku, @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Set<ProductMeta> metaProduct, String[] images) {
+                   @NotNull LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content, Set<ProductMeta> metaProduct, Category category, Set<Carts> carts, String[] images) {
         this.idProduct = idProduct;
         this.users = users;
         this.title = title;
@@ -83,6 +89,8 @@ public class Product implements Serializable {
         this.publishedAt = publishedAt;
         this.content = content;
         this.metaProduct = metaProduct;
+        this.category = category;
+        this.carts = carts;
         this.images = images;
     }
 
@@ -207,5 +215,21 @@ public class Product implements Serializable {
 
     public void setMetaProduct(Set<ProductMeta> productMeta) {
         this.metaProduct = productMeta;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Carts> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Carts> carts) {
+        this.carts = carts;
     }
 }

@@ -8,9 +8,7 @@ import com.computerShop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CartsService {
@@ -25,23 +23,25 @@ public class CartsService {
     private UsersService usersService;
 
     public void addToCart(Long idProduct, Long idUser) {
+        Optional<Product> byId = productRepository.findById(idProduct);
         Carts carts = new Carts();
-        carts.setIdProduct(idProduct);
+        carts.setProduct(byId.get());
         carts.setIdUser(idUser);
         cartsRepository.save(carts);
+
     }
 
-    public void removeFromTheCart(Long idProduct, Long idUser) {
-        Carts byIdUserAndIdProduct = cartsRepository.findByIdUserAndIdProduct(idUser, idProduct);
-        cartsRepository.delete(byIdUserAndIdProduct);
+    public void removeFromTheCart(Long idCart, Long idUser) {
+        Carts carts = cartsRepository.findByIdCartsAndIdUser(idCart,idUser);
+        cartsRepository.delete(carts);
     }
 
-    public List<Product> viewCart(Users users) {
+    public Set<Product> viewCart(Users users) {
         List<Carts> byIdUser = cartsRepository.findByIdUser(users.getIdUser());
-        List<Product> products = new ArrayList<>();
+        Set<Product> products = new HashSet<>();
 
         for (Carts cart: byIdUser){
-            Optional<Product> product = productRepository.findById(cart.getIdProduct());
+            Optional<Product> product = productRepository.findById(cart.getProduct().getIdProduct());
             if(product.isPresent()){
                 products.add(product.get());
             }

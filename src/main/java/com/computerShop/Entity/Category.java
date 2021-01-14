@@ -1,27 +1,40 @@
 package com.computerShop.Entity;
 
+import com.computerShop.Utils.View;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(schema = "ComputerShop")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Category.class)
     private Long idCategory;
     @NotNull
+    @JsonView(View.Category.class)
     private String title;
+    @JsonView(View.Category.class)
     private String metaTitle;
     @NotNull
+    @JsonView(View.Category.class)
     private String slug;
+    @JsonView(View.Category.class)
     private String content;
+    @OneToMany(mappedBy = "category")
+    @JsonView(View.Category.class)
+    private Set<Product> product;
 
-    public Category(Long idCategory, @NotNull String title, String metaTitle, @NotNull String slug, String content) {
+    public Category(Long idCategory, @NotNull String title, String metaTitle, @NotNull String slug, String content, Set<Product> product) {
         this.idCategory = idCategory;
         this.title = title;
         this.metaTitle = metaTitle;
         this.slug = slug;
         this.content = content;
+        this.product = product;
     }
 
     public Category() {
@@ -65,5 +78,13 @@ public class Category {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Set<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(Set<Product> product) {
+        this.product = product;
     }
 }

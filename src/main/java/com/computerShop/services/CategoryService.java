@@ -27,14 +27,11 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public List<ProductCategory> getCurrentCategoryWithProducts(Long id){
-        List<ProductCategory> productCategories = new ArrayList<>();
+    public Category getCurrentCategoryWithProducts(Long id){
 
         Optional<Category> byId = categoryRepository.findById(id);
-        if(byId.isPresent()){
-        productCategories = productCategoryRepository.findAllByCategory(byId.get());
-        }
-        return productCategories;
+
+        return byId.get();
     }
 
 }
