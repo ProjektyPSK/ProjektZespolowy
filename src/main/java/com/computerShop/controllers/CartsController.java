@@ -7,6 +7,7 @@ import com.computerShop.services.CartsService;
 import com.computerShop.services.UsersService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,20 +24,20 @@ public class CartsController {
     private UsersService usersService;
 
 
-    @PostMapping("/carts/add/{id}")
+    @PostMapping(value = "/carts/add/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void addToCart(@PathVariable Long id, Principal principal) {
         Users currentUser = usersService.getCurrentUser(principal.getName());
         cartsService.addToCart(id,currentUser.getIdUser());
     }
 
-    @PostMapping("/carts/delete/{id}")
+    @PostMapping(value = "/carts/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void removeFromTheCart(@PathVariable Long id, Principal principal) {
         Users currentUser = usersService.getCurrentUser(principal.getName());
         cartsService.removeFromTheCart(id, currentUser.getIdUser());
     }
 
-    @JsonView(View.Product.class)
-    @GetMapping("/carts")
+    @JsonView(View.Cart.class)
+    @GetMapping(value = "/carts",produces = MediaType.APPLICATION_JSON_VALUE)
     public Set<Product> viewCart(Authentication authentication, Principal principal) {
         Users currentUser = usersService.getCurrentUser(principal.getName());
         return cartsService.viewCart(currentUser);

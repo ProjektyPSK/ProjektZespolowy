@@ -37,4 +37,11 @@ public class ProductController {
     public void addProduct(@RequestBody Product product) {
         productService.addProduct(product);
     }
+
+    @GetMapping("/product/find")
+    @ResponseBody
+    @JsonView({View.Search.class})
+    public List<Product> findAllByTitleLike(@RequestParam("title") String title){
+        return productService.findAllByTitleLike(title);
+    }
 }

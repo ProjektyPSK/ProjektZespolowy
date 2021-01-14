@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -118,4 +119,9 @@ public class UsersService {
                 .sign(Algorithm.HMAC256(secret));
     }
 
+    public void addMobilePhone(String phone, Principal principal) {
+        Users currentUser = getCurrentUser(principal.getName());
+        currentUser.setMobile(phone);
+        usersRepository.save(currentUser);
+    }
 }

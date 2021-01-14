@@ -11,14 +11,14 @@ import javax.persistence.*;
 public class ProductMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(View.Category.class)
+    @JsonView({View.Category.class, View.Search.class})
     private Long idProductMeta;
     @ManyToOne()
     @JsonIgnore
     private Product product;
-    @JsonView(View.Category.class)
+    @JsonView({View.Category.class, View.Search.class})
     private String key;
-    @JsonView(View.Category.class)
+    @JsonView({View.Category.class, View.Search.class})
     private String content;
 
     public ProductMeta(Long idProductMeta, Product product, String key, String content) {

@@ -11,7 +11,7 @@ public class Carts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({View.Product.class})
+    @JsonView({View.Cart.class})
     private Long idCarts;
     private Long idUser;
     @ManyToOne

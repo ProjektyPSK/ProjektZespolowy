@@ -5,10 +5,9 @@ import com.computerShop.repository.UsersRepository;
 import com.computerShop.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,7 +20,7 @@ public class UserController {
     private UsersService usersService;
 
 
-    @GetMapping(value = "/admin/users/user/{id}",produces = "application/json")
+    @GetMapping(value = "/admin/users/user/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Users getUserDetail(@PathVariable Long id){
         return usersService.findById(id);
     }
@@ -31,7 +30,9 @@ public class UserController {
         return usersService.getAllUsers();
     }
 
-
-
+    @PostMapping(value = "/mobilePhone", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addMobilePhone(@RequestParam() String phone, Principal principal){
+        usersService.addMobilePhone(phone, principal);
+    }
 
 }

@@ -27,9 +27,11 @@ public class Users {
     @NotNull
     private LocalDate registered;
     private LocalDate lastLogin;
+    @OneToOne
+    private Address address;
 
     public Users(Long idUser, @NotNull Credentials credentials, String firstName, String middleName, String lastName, String mobile, boolean isAdmin,
-                 boolean isVendor, LocalDate registered, LocalDate lastLogin) {
+                 boolean isVendor, LocalDate registered, LocalDate lastLogin, Address address) {
 
         this.idUser = idUser;
         this.credentials = credentials;
@@ -42,6 +44,7 @@ public class Users {
         this.registered = registered;
         this.lastLogin = lastLogin;
 
+        this.address = address;
     }
 
     public Users() {
@@ -125,5 +128,13 @@ public class Users {
 
     public void setCredentials(Credentials credentials) {
         this.credentials = credentials;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
