@@ -25,7 +25,6 @@ public class Category {
     @JsonView({View.Product.class,View.Categories.class})
     private String content;
     @OneToMany(mappedBy = "category")
-    @JsonView(View.Product.class)
     private Set<Product> product;
 
     public Category(Long idCategory, @NotNull String title, String metaTitle, @NotNull String slug, String content, Set<Product> product) {

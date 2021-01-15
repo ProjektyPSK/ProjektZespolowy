@@ -63,6 +63,7 @@ public class Product implements Serializable {
     @JsonView({View.Cart.class,View.Product.class})
     private Set<ProductMeta> metaProduct = new HashSet<>();
     @ManyToOne()
+    @JsonView(View.Product.class)
     private Category category;
     @OneToMany(mappedBy = "product")
     @JsonView(View.Cart.class)
