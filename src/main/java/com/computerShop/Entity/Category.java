@@ -12,20 +12,20 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView(View.Category.class)
+    @JsonView({View.Product.class})
     private Long idCategory;
     @NotNull
-    @JsonView(View.Category.class)
+    @JsonView(View.Product.class)
     private String title;
-    @JsonView(View.Category.class)
+    @JsonView(View.Product.class)
     private String metaTitle;
     @NotNull
-    @JsonView(View.Category.class)
+    @JsonView(View.Product.class)
     private String slug;
-    @JsonView(View.Category.class)
+    @JsonView(View.Product.class)
     private String content;
     @OneToMany(mappedBy = "category")
-    @JsonView(View.Category.class)
+    @JsonView(View.Product.class)
     private Set<Product> product;
 
     public Category(Long idCategory, @NotNull String title, String metaTitle, @NotNull String slug, String content, Set<Product> product) {

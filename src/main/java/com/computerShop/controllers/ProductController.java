@@ -15,18 +15,20 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @JsonView(View.Summary.class)
+    @JsonView(View.Products.class)
     @GetMapping("/products")
     public List<Product> all() {
         List<Product> allProducts = productService.findAllProducts();
         return allProducts;
     }
 
+    @JsonView(View.Product.class)
     @GetMapping(value = "/product/{id}")
     public Product getProduct(@PathVariable long id) {
         return productService.getProduct(id);
     }
 
+    @JsonView({View.Product.class})
     @GetMapping("/admin/products")
     public List<Product> getAll() {
         return productService.findAllProducts();
@@ -40,7 +42,7 @@ public class ProductController {
 
     @GetMapping("/product/find")
     @ResponseBody
-    @JsonView({View.Search.class})
+    @JsonView(View.Product.class)
     public List<Product> findAllByTitleLike(@RequestParam("title") String title){
         return productService.findAllByTitleLike(title);
     }

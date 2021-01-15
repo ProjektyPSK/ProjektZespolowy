@@ -21,46 +21,46 @@ public class Product implements Serializable {
 
     @Id
     @NotNull
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProduct;
     @NotNull
     @ManyToOne
     private Users users;
     @NotNull
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private String title;
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private String metaTitle;
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private String summary;
     @NotNull
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private String sku;
     @NotNull
     @Column(columnDefinition = "FLOAT default 0")
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private BigDecimal price;
     @NotNull
     @Column(columnDefinition = "FLOAT default 0")
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private BigDecimal discount;
     @NotNull
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private int quantity;
     @NotNull
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private LocalDate createdAt;
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private LocalDate updatedAt;
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private LocalDate publishedAt;
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     @Column(columnDefinition = "text")
     private String content;
 
     @OneToMany(mappedBy = "product")
-    @JsonView({View.Cart.class, View.Category.class, View.Search.class})
+    @JsonView({View.Cart.class,View.Product.class})
     private Set<ProductMeta> metaProduct = new HashSet<>();
     @ManyToOne()
     private Category category;
@@ -69,7 +69,7 @@ public class Product implements Serializable {
     private Set<Carts> carts;
     @org.hibernate.annotations.Type(type = "string-array")
     @Column(columnDefinition = "text[]")
-    @JsonView({View.Summary.class, View.Cart.class, View.Category.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
     private String[] images;
 
     public Product(@NotNull Long idProduct, @NotNull Users users, @NotNull String title, String metaTitle, String summary,
