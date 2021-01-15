@@ -24,7 +24,7 @@ public class CategoryController {
         return categoryService.getCategory();
     }
 
-    @JsonView(View.Product.class)
+    @JsonView(View.Category.class)
     @GetMapping(value = "/api/categories/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Category getCurrentCategoryWithProducts(@PathVariable Long id) {
         return categoryService.getCurrentCategoryWithProducts(id);

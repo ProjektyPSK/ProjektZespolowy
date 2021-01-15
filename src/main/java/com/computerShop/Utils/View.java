@@ -8,5 +8,6 @@ public class View {
     public interface Order{}
     public interface OrderItem{}
     public interface Categories{}
+    public interface Category{}
 
 }
