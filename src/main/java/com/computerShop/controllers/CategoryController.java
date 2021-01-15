@@ -18,7 +18,7 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
-
+    @JsonView(View.Categories.class)
     @GetMapping(value = "/api/categories",produces = MediaType.APPLICATION_JSON_VALUE)
     List<Category> getCategory() {
         return categoryService.getCategory();

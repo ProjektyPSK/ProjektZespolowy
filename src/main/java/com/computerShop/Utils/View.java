@@ -7,5 +7,6 @@ public class View {
     public interface Product{}
     public interface Order{}
     public interface OrderItem{}
+    public interface Categories{}
 
 }
