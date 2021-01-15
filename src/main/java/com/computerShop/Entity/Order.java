@@ -1,5 +1,8 @@
 package com.computerShop.Entity;
 
+import com.computerShop.Utils.View;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -11,49 +14,73 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.Order.class)
     private Long idOrder;
     @ManyToOne
     private Users users;
+    @JsonView(View.Order.class)
     private String sessionId;
+    @JsonView(View.Order.class)
     private String token;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @JsonView(View.Order.class)
     private Status status;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal subTotal;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal itemDiscount;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal tax;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal shipping;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal total;
+    @JsonView(View.Order.class)
     private String promo;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal discount;
     @NotNull
+    @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal grandTotal;
+    @JsonView(View.Order.class)
     private String firstName;
+    @JsonView(View.Order.class)
     private String middleName;
+    @JsonView(View.Order.class)
     private String lastName;
+    @JsonView(View.Order.class)
     private String mobile;
+    @JsonView(View.Order.class)
     private String email;
+    @JsonView(View.Order.class)
     private String line1;
+    @JsonView(View.Order.class)
     private String line2;
+    @JsonView(View.Order.class)
     private String city;
     private String province;
+    @JsonView(View.Order.class)
     private String country;
     @NotNull
+    @JsonView(View.Order.class)
     private LocalDate createdAt;
+    @JsonView(View.Order.class)
     private LocalDate updatedAt;
+    @JsonView(View.Order.class)
     private Status content;
 
     public Order() {

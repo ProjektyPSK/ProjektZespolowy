@@ -1,5 +1,8 @@
 package com.computerShop.Entity;
 
+import com.computerShop.Utils.View;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -12,27 +15,36 @@ public class OrderItem {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(View.OrderItem.class)
     private Long idOrderItem;
     @ManyToOne
     @NotNull
+    @JsonView(View.OrderItem.class)
     private Product product;
     @ManyToOne
     @NotNull
     private Order order;
     @NotNull
+    @JsonView(View.OrderItem.class)
     private String sku;
     @NotNull
+    @JsonView(View.OrderItem.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal price;
     @NotNull
+    @JsonView(View.OrderItem.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal discount;
     @NotNull
+    @JsonView(View.OrderItem.class)
     @Column(columnDefinition = "SMALLINT default 0")
     private int quantity;
     @NotNull
+    @JsonView(View.OrderItem.class)
     private LocalDate createdAt;
+    @JsonView(View.OrderItem.class)
     private LocalDate updatedAt;
+    @JsonView(View.OrderItem.class)
     private String content;
 
     public OrderItem(@NotNull Long idOrderItem, @NotNull Product product, @NotNull Order order, @NotNull String sku,
