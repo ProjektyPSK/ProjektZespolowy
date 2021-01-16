@@ -21,7 +21,7 @@ public class Product implements Serializable {
 
     @Id
     @NotNull
-    @JsonView({View.Products.class, View.Cart.class, View.Product.class})
+    @JsonView({View.Products.class, View.Cart.class, View.Product.class,View.Category.class})
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idProduct;
     @NotNull
