@@ -24,15 +24,15 @@ public class OrderController {
     @JsonView(View.OrderItem.class)
     @PostMapping(value = "/orderItem", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAddress(@ModelAttribute OrderItem orderItem, Principal principal) {
+    public void addOrderItem(@ModelAttribute OrderItem orderItem, Principal principal) {
         orderService.addOrderItem(orderItem, principal);
     }
 
     @JsonView(View.Order.class)
     @PostMapping(value = "/order", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAddress(@ModelAttribute Order order, Principal principal) {
-        orderService.addOrder(order, principal);
+    public Long addOrder(@ModelAttribute Order order, Principal principal) {
+        return orderService.addOrder(order, principal);
     }
 
 }

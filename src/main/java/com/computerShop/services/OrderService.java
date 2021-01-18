@@ -27,10 +27,11 @@ public class OrderService {
         orderItemRepository.save(orderItem);
     }
 
-    public void addOrder(Order order, Principal principal){
+    public Long addOrder(Order order, Principal principal){
         Users currentUser = usersService.getCurrentUser(principal.getName());
 
         order.setUser(currentUser);
-        orderRepository.save(order);
+        Order save = orderRepository.save(order);
+        return save.getIdOrder();
     }
 }
