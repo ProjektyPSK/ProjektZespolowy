@@ -8,7 +8,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
@@ -27,9 +30,9 @@ public class OrderController {
 
     @JsonView(View.Order.class)
     @PostMapping(value = "/order", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ResponseBody
-    public Long addOrder(@ModelAttribute Order order, Principal principal) {
-        return orderService.addOrder(order, principal);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addOrder(@ModelAttribute Order order, Principal principal) {
+        orderService.addOrder(order, principal);
     }
 
 }
