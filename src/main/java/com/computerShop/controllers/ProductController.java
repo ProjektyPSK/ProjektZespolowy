@@ -5,6 +5,7 @@ import com.computerShop.Utils.View;
 import com.computerShop.services.ProductService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class ProductController {
         productService.addProduct(product);
     }
 
-    @GetMapping("/product/find")
+    @GetMapping(value = "/product/find")
     @ResponseBody
     @JsonView(View.Product.class)
     public List<Product> findAllByTitleLike(@RequestParam("title") String title){
