@@ -14,12 +14,6 @@ public class RegistrationController {
     @Autowired
     private UsersService usersService;
 
-    @PostMapping(value = "/admin/signUp")
-    @ResponseBody
-    public String registerAdmin(@RequestBody RegistrationEmployee registrationEmployee) {
-        return usersService.registrationEmployee(registrationEmployee);
-    }
-
     @PostMapping(value = "/users/signUp", produces = "application/json")
     @ResponseBody
     public String registrations(@RequestBody RegistrationUser registrationUser) {
