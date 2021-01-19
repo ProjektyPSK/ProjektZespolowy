@@ -5,23 +5,18 @@ public class RegistrationEmployee {
     private String email;
     private String password;
     private String firstName;
-    private String middleName;
     private String lastName;
     private String mobile;
-    private boolean isAdmin;
-    private boolean isVendor;
 
 
-    public RegistrationEmployee(String email, String password, String firstName, String middleName, String lastName,
-                                String mobile, boolean isAdmin, boolean isVendor) {
+
+    public RegistrationEmployee(String email, String password, String firstName, String lastName,
+                                String mobile) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.mobile = mobile;
-        this.isAdmin = isAdmin;
-        this.isVendor = isVendor;
     }
 
     public RegistrationEmployee() {
@@ -51,14 +46,6 @@ public class RegistrationEmployee {
         this.firstName = firstName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getLastName() {
         return lastName;
     }
@@ -75,19 +62,4 @@ public class RegistrationEmployee {
         this.mobile = mobile;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public boolean isVendor() {
-        return isVendor;
-    }
-
-    public void setVendor(boolean vendor) {
-        isVendor = vendor;
-    }
 }

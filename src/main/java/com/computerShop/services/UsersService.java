@@ -66,13 +66,10 @@ public class UsersService {
             credential = credentialsRepository.save(credential);
 
             user.setFirstName(registrationEmployee.getFirstName());
-            user.setMiddleName(registrationEmployee.getMiddleName());
             user.setLastName(registrationEmployee.getLastName());
             user.setMobile(registrationEmployee.getMobile());
             user.setRegistered(LocalDate.now());
             user.setCredentials(credential);
-            user.setAdmin(registrationEmployee.isAdmin());
-            user.setVendor(registrationEmployee.isVendor());
 
             user = usersRepository.save(user);
         }
@@ -102,13 +99,10 @@ public class UsersService {
             credential = credentialsRepository.save(credential);
 
             customer.setFirstName(user.getFirstName());
-            customer.setMiddleName(user.getMiddleName());
             customer.setLastName(user.getLastName());
             customer.setMobile(user.getMobile());
             customer.setRegistered(LocalDate.now());
             customer.setCredentials(credential);
-            customer.setAdmin(false);
-            customer.setVendor(false);
             customer = usersRepository.save(customer);
 
         }

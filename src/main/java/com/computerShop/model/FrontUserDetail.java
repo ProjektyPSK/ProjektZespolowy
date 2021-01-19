@@ -30,13 +30,8 @@ public class FrontUserDetail implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<>();
 
-        if (user.isAdmin()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else if (user.isVendor()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_VENDOR"));
-        } else {
+
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }
 
         return authorities;
     }
