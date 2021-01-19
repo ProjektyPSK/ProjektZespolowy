@@ -44,12 +44,10 @@ public class OrderItem {
     private LocalDate createdAt;
     @JsonView(View.OrderItem.class)
     private LocalDate updatedAt;
-    @JsonView(View.OrderItem.class)
-    private String content;
 
     public OrderItem(@NotNull Long idOrderItem, @NotNull Product product, @NotNull Order order, @NotNull String sku,
                      @NotNull BigDecimal price, @NotNull BigDecimal discount, @NotNull int quantity,
-                     @NotNull LocalDate createdAt, LocalDate updatedAt, String content) {
+                     @NotNull LocalDate createdAt, LocalDate updatedAt) {
         this.idOrderItem = idOrderItem;
         this.product = product;
         this.order = order;
@@ -59,7 +57,6 @@ public class OrderItem {
         this.quantity = quantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.content = content;
     }
 
     public OrderItem() {
@@ -135,13 +132,5 @@ public class OrderItem {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 }

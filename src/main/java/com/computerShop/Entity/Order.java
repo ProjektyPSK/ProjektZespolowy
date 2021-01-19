@@ -18,10 +18,6 @@ public class Order {
     private Long idOrder;
     @ManyToOne
     private Users users;
-    @JsonView(View.Order.class)
-    private String sessionId;
-    @JsonView(View.Order.class)
-    private String token;
     @NotNull
     @Enumerated(EnumType.STRING)
     @JsonView(View.Order.class)
@@ -30,10 +26,6 @@ public class Order {
     @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal subTotal;
-    @NotNull
-    @JsonView(View.Order.class)
-    @Column(columnDefinition = "FLOAT default 0")
-    private BigDecimal itemDiscount;
     @NotNull
     @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
@@ -46,12 +38,6 @@ public class Order {
     @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
     private BigDecimal total;
-    @JsonView(View.Order.class)
-    private String promo;
-    @NotNull
-    @JsonView(View.Order.class)
-    @Column(columnDefinition = "FLOAT default 0")
-    private BigDecimal discount;
     @NotNull
     @JsonView(View.Order.class)
     @Column(columnDefinition = "FLOAT default 0")
@@ -59,20 +45,15 @@ public class Order {
     @JsonView(View.Order.class)
     private String firstName;
     @JsonView(View.Order.class)
-    private String middleName;
-    @JsonView(View.Order.class)
     private String lastName;
     @JsonView(View.Order.class)
     private String mobile;
-    @JsonView(View.Order.class)
-    private String email;
     @JsonView(View.Order.class)
     private String line1;
     @JsonView(View.Order.class)
     private String line2;
     @JsonView(View.Order.class)
     private String city;
-    private String province;
     @JsonView(View.Order.class)
     private String country;
     @NotNull
@@ -80,44 +61,33 @@ public class Order {
     private LocalDate createdAt;
     @JsonView(View.Order.class)
     private LocalDate updatedAt;
-    @JsonView(View.Order.class)
-    private Status content;
 
     public Order() {
     }
 
-    public Order(Long idOrder, Users users, String sessionId, String token, Status status, @NotNull BigDecimal subTotal,
-                 @NotNull BigDecimal itemDiscount, @NotNull BigDecimal tax, @NotNull BigDecimal shipping,
-                 @NotNull BigDecimal total, String promo, @NotNull BigDecimal discount, @NotNull BigDecimal grandTotal,
-                 String firstName, String middleName, String lastName, String mobile, String email, String line1,
-                 String line2, String city, String province, String country, @NotNull LocalDate createdAt,
-                 LocalDate updatedAt, Status content) {
+    public Order(Long idOrder, Users users, Status status, @NotNull BigDecimal subTotal,
+                @NotNull BigDecimal tax, @NotNull BigDecimal shipping,
+                 @NotNull BigDecimal total, @NotNull BigDecimal grandTotal,
+                 String firstName, String lastName, String mobile, String line1,
+                 String line2, String city,String country, @NotNull LocalDate createdAt,
+                 LocalDate updatedAt) {
         this.idOrder = idOrder;
         this.users = users;
-        this.sessionId = sessionId;
-        this.token = token;
         this.status = status;
         this.subTotal = subTotal;
-        this.itemDiscount = itemDiscount;
         this.tax = tax;
         this.shipping = shipping;
         this.total = total;
-        this.promo = promo;
-        this.discount = discount;
         this.grandTotal = grandTotal;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.mobile = mobile;
-        this.email = email;
         this.line1 = line1;
         this.line2 = line2;
         this.city = city;
-        this.province = province;
         this.country = country;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.content = content;
     }
 
     public Long getIdOrder() {
@@ -136,22 +106,6 @@ public class Order {
         this.users = users;
     }
 
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -166,14 +120,6 @@ public class Order {
 
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
-    }
-
-    public BigDecimal getItemDiscount() {
-        return itemDiscount;
-    }
-
-    public void setItemDiscount(BigDecimal itemDiscount) {
-        this.itemDiscount = itemDiscount;
     }
 
     public BigDecimal getTax() {
@@ -200,22 +146,6 @@ public class Order {
         this.total = total;
     }
 
-    public String getPromo() {
-        return promo;
-    }
-
-    public void setPromo(String promo) {
-        this.promo = promo;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
     public BigDecimal getGrandTotal() {
         return grandTotal;
     }
@@ -232,14 +162,6 @@ public class Order {
         this.firstName = firstName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getLastName() {
         return lastName;
     }
@@ -254,14 +176,6 @@ public class Order {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getLine1() {
@@ -288,14 +202,6 @@ public class Order {
         this.city = city;
     }
 
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getCountry() {
         return country;
     }
@@ -318,13 +224,5 @@ public class Order {
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Status getContent() {
-        return content;
-    }
-
-    public void setContent(Status content) {
-        this.content = content;
     }
 }

@@ -19,30 +19,22 @@ public class Users {
     @JsonIgnore
     private Credentials credentials;
     private String firstName;
-    private String middleName;
     private String lastName;
     private String mobile;
-    private boolean isAdmin;
-    private boolean isVendor;
     @NotNull
     private LocalDate registered;
-    private LocalDate lastLogin;
     @OneToOne
     private Address address;
 
-    public Users(Long idUser, @NotNull Credentials credentials, String firstName, String middleName, String lastName, String mobile, boolean isAdmin,
-                 boolean isVendor, LocalDate registered, LocalDate lastLogin, Address address) {
+    public Users(Long idUser, @NotNull Credentials credentials, String firstName, String lastName, String mobile,
+                 LocalDate registered, Address address) {
 
         this.idUser = idUser;
         this.credentials = credentials;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
         this.mobile = mobile;
-        this.isAdmin = isAdmin;
-        this.isVendor = isVendor;
         this.registered = registered;
-        this.lastLogin = lastLogin;
 
         this.address = address;
     }
@@ -66,14 +58,6 @@ public class Users {
         this.firstName = firstName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public String getLastName() {
         return lastName;
     }
@@ -90,36 +74,12 @@ public class Users {
         this.mobile = mobile;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public boolean isVendor() {
-        return isVendor;
-    }
-
-    public void setVendor(boolean vendor) {
-        isVendor = vendor;
-    }
-
     public LocalDate getRegistered() {
         return registered;
     }
 
     public void setRegistered(LocalDate registered) {
         this.registered = registered;
-    }
-
-    public LocalDate getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(LocalDate lastLogin) {
-        this.lastLogin = lastLogin;
     }
 
     public Credentials getCredentials() {
